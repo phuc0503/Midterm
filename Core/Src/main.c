@@ -218,7 +218,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
+                          |E_Pin|F_Pin|G_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : BUT_RES_Pin BUT_INC_Pin BUT_DEC_Pin */
   GPIO_InitStruct.Pin = BUT_RES_Pin|BUT_INC_Pin|BUT_DEC_Pin;

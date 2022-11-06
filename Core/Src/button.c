@@ -13,7 +13,7 @@ int KeyBuffer4[NUMBER_OF_BUTTONS];
 
 int flagForButtons[NUMBER_OF_BUTTONS];
 int flagForButtonsLongPressed[NUMBER_OF_BUTTONS];
-int timerForKeyPress[NUMBER_OF_BUTTONS];
+int timerForKeyPress[NUMBER_OF_BUTTONS] = {300, 300, 300};
 
 int isButtonPressed(int index){
 	if(index > NUMBER_OF_BUTTONS){
@@ -31,7 +31,7 @@ int isButtonLongPressed(int index){
 		return 0;
 	}
 	if(flagForButtonsLongPressed[index] == 1){
-		flagForButtonsLongPressed[index] == 0;
+		flagForButtonsLongPressed[index] = 0;
 		return 1;
 	}
 	return 0;
@@ -68,8 +68,11 @@ void getKeyInput(){
 			}else{
 				timerForKeyPress[i]--;
 				if(timerForKeyPress[i] == 0){
-					flagForButtonsLongPressed[i] = 1;
-					KeyBuffer4[i] = NORMAL_STATE;
+					if(KeyBuffer3[i] == PRESSED_STATE){
+						flagForButtons[i] = 1;
+						flagForButtonsLongPressed[i] = 1;
+					}
+					timerForKeyPress[i] = 100;
 				}
 			}
 		}

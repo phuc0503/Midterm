@@ -24,7 +24,7 @@ void fsm_automatic_run(){
 			status = RES;
 			counter = 0;
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(1) == 1){
 			status = INC;
@@ -34,7 +34,7 @@ void fsm_automatic_run(){
 				counter = 0;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(2) == 1){
 			status = DEC;
@@ -44,7 +44,7 @@ void fsm_automatic_run(){
 				counter = 9;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		break;
 	case INC:
@@ -60,7 +60,7 @@ void fsm_automatic_run(){
 			status = RES;
 			counter = 0;
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(1) == 1){
 			status = INC;
@@ -70,7 +70,7 @@ void fsm_automatic_run(){
 				counter = 0;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(2) == 1){
 			status = DEC;
@@ -80,7 +80,7 @@ void fsm_automatic_run(){
 				counter = 9;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		break;
 	case DEC:
@@ -96,7 +96,7 @@ void fsm_automatic_run(){
 			status = RES;
 			counter = 0;
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(1) == 1){
 			status = INC;
@@ -106,7 +106,7 @@ void fsm_automatic_run(){
 				counter = 0;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		if(isButtonPressed(2) == 1){
 			status = DEC;
@@ -116,10 +116,72 @@ void fsm_automatic_run(){
 				counter = 9;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
 		break;
 	case RES:
+		if(isButtonPressed(1) == 1){
+			status = INC;
+			if(counter < 9){
+				counter++;
+			}else{
+				counter = 0;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonPressed(2) == 1){
+			status = DEC;
+			if(counter > 0){
+				counter--;
+			}else{
+				counter = 9;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonLongPressed(1)){
+			status = INC_LONG;
+			if(counter < 9){
+				counter++;
+			}else{
+				counter = 0;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonLongPressed(2)){
+			status = DEC_LONG;
+			if(counter > 0){
+				counter--;
+			}else{
+				counter = 9;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		break;
+	case INC_LONG:
+		if(isButtonLongPressed(1)){
+			status = INC_LONG;
+			if(counter < 9){
+				counter++;
+			}else{
+				counter = 0;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonLongPressed(2)){
+			status = DEC_LONG;
+			if(counter > 0){
+				counter--;
+			}else{
+				counter = 9;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
 		if(timer2_flag == 1){
 			status = AUTO;
 			display7SEG(counter);
@@ -128,13 +190,13 @@ void fsm_automatic_run(){
 			}
 			setTimer2(1000);
 		}
-		if(isButtonPressed(0)== 1){
+		if(isButtonPressed(0)){
 			status = RES;
 			counter = 0;
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
-		if(isButtonPressed(1) == 1){
+		if(isButtonPressed(1) && !isButtonLongPressed(1)){
 			status = INC;
 			if(counter < 9){
 				counter++;
@@ -142,9 +204,9 @@ void fsm_automatic_run(){
 				counter = 0;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
 		}
-		if(isButtonPressed(2) == 1){
+		if(isButtonPressed(2)){
 			status = DEC;
 			if(counter > 0){
 				counter--;
@@ -152,7 +214,63 @@ void fsm_automatic_run(){
 				counter = 9;
 			}
 			display7SEG(counter);
-			setTimer2(5000);
+			setTimer2(10000);
+		}
+		break;
+	case DEC_LONG:
+		if(isButtonLongPressed(1)){
+			status = INC_LONG;
+			if(counter < 9){
+				counter++;
+			}else{
+				counter = 0;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonLongPressed(2)){
+			status = DEC_LONG;
+			if(counter > 0){
+				counter--;
+			}else{
+				counter = 9;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(timer2_flag == 1){
+			status = AUTO;
+			display7SEG(counter);
+			if(counter > 0){
+				counter--;
+			}
+			setTimer2(1000);
+		}
+		if(isButtonPressed(0)){
+			status = RES;
+			counter = 0;
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonPressed(1)){
+			status = INC;
+			if(counter < 9){
+				counter++;
+			}else{
+				counter = 0;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
+		}
+		if(isButtonPressed(2)){
+			status = DEC;
+			if(counter > 0){
+				counter--;
+			}else{
+				counter = 9;
+			}
+			display7SEG(counter);
+			setTimer2(10000);
 		}
 		break;
 	default:

@@ -16,6 +16,8 @@
 #define INC 		3
 #define DEC 	    4
 #define RES			5
+#define INC_LONG	6
+#define DEC_LONG	7
 
 extern int status;
 extern int counter;
